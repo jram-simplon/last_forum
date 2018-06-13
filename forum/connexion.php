@@ -66,7 +66,7 @@ else
             entré n\'est pas correcte.</p><p>Cliquez <a href="./connexion.php">ici</a> 
 	    pour revenir à la page précédente
 	    <br /><br />Cliquez <a href="./index.php">ici</a> 
-	    pour revenir à la page d accueil</p>';
+	    pour revenir à la page d\'accueil</p>';
 	}
     $query->CloseCursor();
     }
@@ -79,6 +79,6 @@ else
 <input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" />
 
 <?php
-$page = htmlspecialchars($_POST['page']);
-echo 'Cliquez <a href="'.$page.'">ici</a> pour revenir à la page précédente';
+//$page = htmlspecialchars($_POST['page']);
+//echo 'Cliquez <a href="'.$page.'">ici</a> pour revenir à la page précédente';
 ?>

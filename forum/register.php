@@ -20,14 +20,9 @@ if (empty($_POST['pseudo'])) // Si on la variable est vide, on peut considérer 
 	</fieldset>
 	<fieldset><legend>Contacts</legend>
 	<label for="email">* Votre adresse Mail :</label><input type="text" name="email" id="email" /><br />
-	<label for="msn">Votre adresse MSN :</label><input type="text" name="msn" id="msn" /><br />
-	<label for="website">Votre site web :</label><input type="text" name="website" id="website" />
-	</fieldset>
-	<fieldset><legend>Informations supplémentaires</legend>
-	<label for="localisation">Localisation :</label><input type="text" name="localisation" id="localisation" />
 	</fieldset>
 	<fieldset><legend>Profil sur le forum</legend>
-	<label for="avatar">Choisissez votre avatar :</label><input type="file" name="avatar" id="avatar" />(Taille max : 10Ko<br />
+	<label for="avatar">Choisissez votre avatar :</label><input type="file" name="avatar" id="avatar" />(Taille max : 10Ko)<br />
 	<label for="signature">Signature :</label><textarea cols="40" rows="4" name="signature" id="signature">La signature est limitée à 200 caractères</textarea>
 	</fieldset>
 	<p>Les champs précédés d un * sont obligatoires</p>
@@ -59,9 +54,6 @@ else //On est dans le cas traitement
     $pseudo        = htmlspecialchars($_POST['pseudo']);
     $signature     = htmlspecialchars($_POST['signature']);
     $email         = htmlspecialchars($_POST['email']);
-    $msn           = htmlspecialchars($_POST['msn']);
-    $website       = htmlspecialchars($_POST['website']);
-    $localisation  = htmlspecialchars($_POST['localisation']);
     $pass          = htmlspecialchars($_POST['password']);
     $confirm       = htmlspecialchars($_POST['confirm']);
     $nomavatar     = "default_avatar.jpg";
@@ -112,12 +104,7 @@ else //On est dans le cas traitement
         $email_erreur2 = "Votre adresse E-Mail n'a pas un format valide";
         $i++;
     }
-    //Vérification de l'adresse MSN
-    if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $msn) && !empty($msn))
-    {
-        $msn_erreur = "Votre adresse MSN n'a pas un format valide";
-        $i++;
-    }
+
     //Vérification de la signature
     if (strlen($signature) > 200)
     {
@@ -166,21 +153,17 @@ else //On est dans le cas traitement
 	<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d accueil</p>';
 	
         //La ligne suivante sera commentée plus bas
-	$nomavatar=(!empty($_FILES['avatar']['size']))?move_avatar($_FILES['avatar']):''; 
+	//$nomavatar=(!empty($_FILES['avatar']['size']))?move_avatar($_FILES['avatar']):''; 
    
-        $query=$db->prepare('INSERT INTO forum_membres (membre_pseudo, membre_mdp, membre_email,             
-        membre_msn, membre_siteweb, membre_avatar,
-        membre_signature, membre_localisation, membre_inscrit,   
+        $query=$db->prepare('INSERT INTO forum_membres (membre_pseudo, membre_mdp, membre_email, membre_avatar,
+        membre_signature, membre_inscrit,   
         membre_derniere_visite)
-        VALUES (:pseudo, :pass, :email, :msn, :website, :nomavatar, :signature, :localisation, :temps, :temps)');
+        VALUES (:pseudo, :pass, :email, :nomavatar, :signature, :temps, :temps)');
 	$query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
 	$query->bindValue(':pass', $passhash);
 	$query->bindValue(':email', $email, PDO::PARAM_STR);
-	$query->bindValue(':msn', $msn, PDO::PARAM_STR);
-	$query->bindValue(':website', $website, PDO::PARAM_STR);
 	$query->bindValue(':nomavatar', $nomavatar, PDO::PARAM_STR);
 	$query->bindValue(':signature', $signature, PDO::PARAM_STR);
-	$query->bindValue(':localisation', $localisation, PDO::PARAM_STR);
 	$query->bindValue(':temps', $temps, PDO::PARAM_INT);
         $query->execute();
 
@@ -200,7 +183,6 @@ else //On est dans le cas traitement
         echo'<p>'.$mdp_erreur.'</p>';
         echo'<p>'.$email_erreur1.'</p>';
         echo'<p>'.$email_erreur2.'</p>';
-        echo'<p>'.$msn_erreur.'</p>';
         echo'<p>'.$signature_erreur.'</p>';
         echo'<p>'.$avatar_erreur.'</p>';
         echo'<p>'.$avatar_erreur1.'</p>';

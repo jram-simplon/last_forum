@@ -15,8 +15,8 @@ switch($action)
     case "consulter":
        //On récupère les infos du membre
        $query=$db->prepare('SELECT membre_pseudo, membre_avatar,
-       membre_email, membre_msn, membre_signature, membre_siteweb, membre_post,
-       membre_inscrit, membre_localisation
+       membre_email, membre_signature, membre_post,
+       membre_inscrit
        FROM forum_membres WHERE membre_id=:membre');
        $query->bindValue(':membre',$membre, PDO::PARAM_INT);
        $query->execute();
@@ -33,19 +33,12 @@ switch($action)
        echo'<p><strong>Adresse E-Mail : </strong>
        <a href="mailto:'.stripslashes($data['membre_email']).'">
        '.stripslashes(htmlspecialchars($data['membre_email'])).'</a><br />';
-       
-       echo'<strong>MSN Messenger : </strong>'.stripslashes(htmlspecialchars($data['membre_msn'])).'<br />';
-       
-       echo'<strong>Site Web : </strong>
-       <a href="'.stripslashes($data['membre_siteweb']).'">'.stripslashes(htmlspecialchars($data['membre_siteweb'])).'</a>
-       <br /><br />';
+ 
  
        echo'Ce membre est inscrit depuis le
        <strong>'.date('d/m/Y',$data['membre_inscrit']).'</strong>
        et a posté <strong>'.$data['membre_post'].'</strong> messages
        <br /><br />';
-       echo'<strong>Localisation : </strong>'.stripslashes(htmlspecialchars($data['membre_localisation'])).'
-       </p>';
        $query->CloseCursor();
        break;
     //Si on choisit de modifier son profil
@@ -81,20 +74,6 @@ switch($action)
         <label for="email">Votre adresse E_Mail :</label>
         <input type="text" name="email" id="email"
         value="'.stripslashes($data['membre_email']).'" /><br />
- 
-        <label for="msn">Votre adresse MSN :</label>
-        <input type="text" name="msn" id="msn"
-        value="'.stripslashes($data['membre_msn']).'" /><br />
- 
-        <label for="website">Votre site web :</label>
-        <input type="text" name="website" id="website"
-        value="'.stripslashes($data['membre_siteweb']).'" /><br />
-        </fieldset>
- 
-        <fieldset><legend>Informations supplémentaires</legend>
-        <label for="localisation">Localisation :</label>
-        <input type="text" name="localisation" id="localisation"
-        value="'.stripslashes($data['membre_localisation']).'" /><br />
         </fieldset>
                
         <fieldset><legend>Profil sur le forum</legend>
@@ -142,9 +121,6 @@ switch($action)
     $pseudo        = htmlspecialchars($_POST['pseudo']);
     $signature     = htmlspecialchars($_POST['signature']);
     $email         = htmlspecialchars($_POST['email']);
-    $msn           = htmlspecialchars($_POST['msn']);
-    $website       = htmlspecialchars($_POST['website']);
-    $localisation  = htmlspecialchars($_POST['localisation']);
     $pass          = htmlspecialchars($_POST['password']);
     $confirm       = htmlspecialchars($_POST['confirm']);
     $passhash      = password_hash($pass, PASSWORD_DEFAULT);
@@ -185,12 +161,6 @@ switch($action)
             $email_erreur2 = "Votre nouvelle adresse E-Mail n'a pas un format valide";
             $i++;
         }
-    }
-    //Vérification de l’adresse MSN
-    if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $msn) && !empty($msn))
-    {
-        $msn_erreur = "Votre nouvelle adresse MSN n'a pas un format valide";
-        $i++;
     }
 
     //Vérification de la signature
@@ -276,15 +246,12 @@ switch($action)
         //On modifie la table
  
         $query=$db->prepare('UPDATE forum_membres
-        SET  membre_mdp = :pass, membre_email=:mail, membre_msn=:msn, membre_siteweb=:website,
-        membre_signature=:sign, membre_localisation=:loc
+        SET  membre_mdp = :pass, membre_email=:mail,
+        membre_signature=:sign
         WHERE membre_id=:id');
        	$query->bindValue(':pass', $passhash);
         $query->bindValue(':mail',$email,PDO::PARAM_STR);
-        $query->bindValue(':msn',$msn,PDO::PARAM_STR);
-        $query->bindValue(':website',$website,PDO::PARAM_STR);
         $query->bindValue(':sign',$signature,PDO::PARAM_STR);
-        $query->bindValue(':loc',$localisation,PDO::PARAM_STR);
         $query->bindValue(':id',$id,PDO::PARAM_INT);
         $query->execute();
         $query->CloseCursor();
@@ -297,7 +264,6 @@ switch($action)
         echo'<p>'.$mdp_erreur.'</p>';
         echo'<p>'.$email_erreur1.'</p>';
         echo'<p>'.$email_erreur2.'</p>';
-        echo'<p>'.$msn_erreur.'</p>';
         echo'<p>'.$signature_erreur.'</p>';
         echo'<p>'.$avatar_erreur.'</p>';
         echo'<p>'.$avatar_erreur1.'</p>';
