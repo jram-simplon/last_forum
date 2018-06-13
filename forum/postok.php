@@ -91,8 +91,9 @@ switch($action)
         $query->CloseCursor();
 
         //Et un petit message
-        echo'<p>Votre message a bien été ajouté!<br /><br />Cliquez <a href="./index.php">ici</a> pour revenir à l index du forum<br />
-        Cliquez <a href="./voirtopic.php?t='.$nouveautopic.'">ici</a> pour le voir</p>';
+        //echo'<p>Votre message a bien été ajouté!<br /><br />Cliquez <a href="./index.php">ici</a> pour revenir à l index du forum<br />
+        //Cliquez <a href="./voirtopic.php?t='.$nouveautopic.'">ici</a> pour le voir</p>';
+        header('location:./voirtopic.php?t='.$nouveautopic.'');
     }
     break; //Houra !
 
@@ -155,13 +156,16 @@ switch($action)
         $nombreDeMessagesParPage = 15;
         $nbr_post = $data['topic_post']+1;
         $page = ceil($nbr_post / $nombreDeMessagesParPage);
-        echo'<p>Votre message a bien été ajouté!<br /><br />
-        Cliquez <a href="./index.php">ici</a> pour revenir à l index du forum<br />
-        Cliquez <a href="./voirtopic.php?t='.$topic.'&amp;page='.$page.'#p_'.$nouveaupost.'">ici</a> pour le voir</p>';
+        //echo'<p>Votre message a bien été ajouté!<br /><br />
+        //Cliquez <a href="./index.php">ici</a> pour revenir à l index du forum<br />
+        //Cliquez <a href="./voirtopic.php?t='.$topic.'&amp;page='.$page.'#p_'.$nouveaupost.'">ici</a> pour le voir</p>';
+
+        header('location:./voirtopic.php?t='.$topic.'&amp;page='.$page.'#p_'.$nouveaupost.'');
+
     }//Fin du else
     break;
 
-    
+
  default;
     echo'<p>Cette action est impossible</p>';
 } //Fin du Switch
