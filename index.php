@@ -2,6 +2,8 @@
 
 SESSION_START();
 
+echo "Réné garde la peche";
+
 ?>
 
 
@@ -190,6 +192,8 @@ echo '
     </form>
   </div>
 </nav>
+
+
          
          <div class="contient">
           <h5>Une news pour les amoureux dédiés à Overwatch</h5>
