@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_unset();
 session_destroy();
 $titre="Déconnexion";
 include("includes/debut.php");
@@ -13,5 +14,5 @@ if ($id==0) erreur(ERR_IS_NOT_CO);
 //Cliquez <a href="./index.php">ici</a> pour revenir à la page principale</p>';
 //echo '</div></body></html>';
 
-header('location:./index.php');
+header('location:'.$racine.'./index.php');
 ?>

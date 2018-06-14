@@ -105,6 +105,10 @@ else //On est dans le cas traitement
         $i++;
     }
 
+    if(empty($signature)) {
+
+        $signature = "John Doe !";
+    }
     //Vérification de la signature
     if (strlen($signature) > 200)
     {
@@ -148,9 +152,9 @@ else //On est dans le cas traitement
 
        if ($i==0)
    {
-	echo'<h1>Inscription terminée</h1>';
-        echo'<p>Bienvenue '.stripslashes($pseudo).' vous êtes maintenant inscrit sur le forum</p>
-	<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d accueil</p>';
+	//echo'<h1>Inscription terminée</h1>';
+      //  echo'<p>Bienvenue '.stripslashes($pseudo).' vous êtes maintenant inscrit sur le forum</p>
+	// <p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d accueil</p>';
 	
         //La ligne suivante sera commentée plus bas
 	//$nomavatar=(!empty($_FILES['avatar']['size']))?move_avatar($_FILES['avatar']):''; 
@@ -172,6 +176,9 @@ else //On est dans le cas traitement
         $_SESSION['id'] = $db->lastInsertId(); ;
         $_SESSION['level'] = 2;
         $query->CloseCursor();
+
+        header('location:../index.php');
+
     }
     else
     {
