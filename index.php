@@ -174,7 +174,25 @@ echo '
         <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-columns"></i> Forum</a>
+
+<?php
+              if (empty($_SESSION)) {
+echo '
+      <a class="nav-link" href="#"><i class="fas fa-columns"></i> Forum</a>';
+
+      }else{
+
+      echo '<a class="nav-link" href="./forum/index.php"><i class="fas fa-columns"></i> Forum</a>';
+
+      }
+
+      ?>
+
+
+
+
+
+
       </li>
       <li class="nav-item active">
           <a class="nav-link" href="#"><i class="far fa-newspaper"></i> Actualités</a>
