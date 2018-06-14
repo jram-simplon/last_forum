@@ -2,7 +2,7 @@
 
 SESSION_START();
 
-echo "Réné garde la peche";
+echo "Réné garde la peche mon gars";
 
 ?>
 
