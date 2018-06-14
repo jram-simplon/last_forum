@@ -47,7 +47,7 @@ echo '
 
       }else{
 
-      echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter">'.$_SESSION['pseudo'].'</a>';
+      echo '<a class="nav-link" href="./forum/voirprofil.php?m='.$_SESSION['id'].'&action=consulter">Hello '.$_SESSION['pseudo'].' !</a>';
 
       }
 
