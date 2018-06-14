@@ -2,7 +2,11 @@
 
 SESSION_START();
 
+<<<<<<< HEAD
 echo 'Abdour fait pas ton julien stp';
+=======
+echo "Réné garde la peche mon gars";
+>>>>>>> 06a07e9bf2680d73244951e0e2ec27e004d43cf5
 
 ?>
 
@@ -192,6 +196,8 @@ echo '
     </form>
   </div>
 </nav>
+
+
          
          <div class="contient">
           <h5>Une news pour les amoureux dédiés à Overwatch</h5>
