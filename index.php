@@ -2,6 +2,8 @@
 
 SESSION_START();
 
+echo 'Abdour fait pas ton julien stp';
+
 ?>
 
 
