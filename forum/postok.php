@@ -7,11 +7,14 @@ include("includes/menu.php");
 //On récupère la valeur de la variable action
 $action = (isset($_GET['action']))?htmlspecialchars($_GET['action']):'';
 
-// Si le membre n'est pas connecté, il est arrivé ici par erreur
-if ($id==0) erreur(ERR_IS_CO);
-?>
 
-<?php
+
+// Si le membre n'est pas connecté, il est arrivé ici par erreur
+//if ($id==0) erreur(ERR_IS_CO);
+
+CheckLogIn();
+
+
 switch($action)
 {
     //Premier cas : nouveau topic

@@ -7,6 +7,8 @@ include("includes/debut.php");
 //include("includes/bbcode.php");
 include("includes/menu.php");
 
+CheckLogIn();
+
 $action = (isset($_GET['action']))?htmlspecialchars($_GET['action']):'';
 
 ?>
@@ -195,7 +197,7 @@ case "supprimer": //4eme cas : on veut supprimer un mp reçu
     }
 
     break;
-    
+
 //Si rien n'est demandé ou s'il y a une erreur dans l'url 
 //On affiche la boite de mp.
 default;

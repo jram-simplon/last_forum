@@ -8,6 +8,8 @@ include("includes/menu.php");
 $action = isset($_GET['action'])?htmlspecialchars($_GET['action']):'consulter';
 $membre = isset($_GET['m'])?(int) $_GET['m']:'';
 
+CheckLogIn();
+
 //On regarde la valeur de la variable $action
 switch($action)
 {

@@ -5,6 +5,8 @@ include("includes/identifiants.php");
 include("includes/debut.php");
 include("includes/menu.php");
 // include("includes/bbcode.php"); //On verra plus tard ce qu'est ce fichier
+
+CheckLogIn();
  
 //On récupère la valeur de t
 $topic = (int) $_GET['t'];

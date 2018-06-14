@@ -5,6 +5,8 @@ include("includes/identifiants.php");
 include("includes/debut.php");
 include("includes/menu.php");
 
+CheckLogIn();
+
 //On récupère la valeur de f
 $forum = (int) $_GET['f'];
 
