@@ -58,7 +58,6 @@ switch($action)
         $data=$query->fetch();
         echo '<p><i>Vous êtes ici</i> : <a href="./index.php">Index du forum</a> --> Modification du profil';
         echo '<h1>Modifier son profil</h1>';
-        
         echo '<form method="post" action="voirprofil.php?action=modifier" enctype="multipart/form-data">
        
  

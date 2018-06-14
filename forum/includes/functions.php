@@ -70,5 +70,12 @@ return ($auth_necessaire <= intval($level));
 
 }
 
-?>
+function CheckLogIn() {
+
+	if (empty($_SESSION)) {
+
+header ('location:./../index.php');
+
+}
+}
 ?>
