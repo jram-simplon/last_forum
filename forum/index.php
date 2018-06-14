@@ -2,29 +2,29 @@
 //Cette fonction doit être appelée avant tout code html
 session_start();
 
-
 //On donne ensuite un titre à la page, puis on appelle notre fichier debut.php
 $titre = "Index du forum";
 include("includes/identifiants.php");
 include("includes/debut.php");
 include("includes/menu.php");
 
-
-CheckLogIn();
-
 echo'<i>Vous êtes ici : </i><a href ="./index.php">Index du forum</a>';
 
 ?>
-
-
-<h1>Mon super forum</h1>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+<body>
+<div>
+<h1>Bienvenue chez Sheeks !!</h1>
 
 <?php
 //Initialisation de deux variables
 $totaldesmessages = 0;
 $categorie = NULL;
 
-
+//Cette requête permet d'obtenir tout sur le forum
 //Cette requête permet d'obtenir tout sur le forum
 $query=$db->prepare('SELECT cat_id, cat_nom, 
 forum_forum.forum_id, forum_name, forum_desc, forum_post, forum_topic, auth_view, forum_topic.topic_id,  forum_topic.topic_post, post_id, post_time, post_createur, membre_pseudo, 
@@ -49,27 +49,26 @@ while($data = $query->fetch())
     if( $categorie != $data['cat_id'] )
     {
         //Si c'est une nouvelle catégorie on l'affiche
-       
+
         $categorie = $data['cat_id'];
         ?>
         <tr>
         <th></th>
         <th class="titre"><strong><?php echo stripslashes(htmlspecialchars($data['cat_nom'])); ?>
-        </strong></th>             
-        <th class="nombremessages"><strong>Sujets</strong></th>       
-        <th class="nombresujets"><strong>Messages</strong></th>       
-        <th class="derniermessage"><strong>Dernier message</strong></th>   
+        </strong></th>
+        <th class="nombremessages"><strong>Sujets</strong></th>
+        <th class="nombresujets"><strong>Messages</strong></th>
+        <th class="derniermessage"><strong>Dernier message</strong></th>
         </tr>
         <?php
-               
+
     }
 
     //Ici, on met le contenu de chaque catégorie
 
         // Ce super echo de la mort affiche tous
     // les forums en détail : description, nombre de réponses etc...
-
-    echo'<tr><td><img src="./images/message.gif" alt="message" /></td>
+echo'<tr><td><img src="./images/message.gif" alt="message" /></td>
     <td class="titre"><strong>
     <a href="./voirforum.php?f='.$data['forum_id'].'">
     '.stripslashes(htmlspecialchars($data['forum_name'])).'</a></strong>
@@ -82,19 +81,18 @@ while($data = $query->fetch())
     if (!empty($data['forum_post']))
     {
          //Selection dernier message
-	 $nombreDeMessagesParPage = 15;
+     $nombreDeMessagesParPage = 15;
          $nbr_post = $data['topic_post'] +1;
-	 $page = ceil($nbr_post / $nombreDeMessagesParPage);
-		 
+     $page = ceil($nbr_post / $nombreDeMessagesParPage);
+         
          echo'<td class="derniermessage">
          '.date('H\hi \l\e d/M/Y',$data['post_time']).'<br />
          <a href="./voirprofil.php?m='.stripslashes(htmlspecialchars($data['membre_id'])).'&amp;action=consulter">'.$data['membre_pseudo'].'  </a>
          <a href="./voirtopic.php?t='.$data['topic_id'].'&amp;page='.$page.'#p_'.$data['post_id'].'">
          <img src="./images/go.gif" alt="" /></a></td></tr>';
-
                                     // alt="go"
      }
-     else
+else
      {
          echo'<td class="nombremessages">Pas de message</td></tr>';
      }
@@ -116,7 +114,7 @@ Qui est en ligne ?
 
 //On compte les membres
 $TotalDesMembres = $db->query('SELECT COUNT(*) FROM forum_membres')->fetchColumn();
-$query->CloseCursor();	
+$query->CloseCursor();
 $query = $db->query('SELECT membre_pseudo, membre_id FROM forum_membres ORDER BY membre_id DESC LIMIT 0, 1');
 $data = $query->fetch();
 $derniermembre = stripslashes(htmlspecialchars($data['membre_pseudo']));
@@ -129,4 +127,6 @@ $query->CloseCursor();
 </div>
 </body>
 </html>
+
+
 
