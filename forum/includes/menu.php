@@ -1,6 +1,9 @@
 <?php
 echo '<body>
-<div id="banniere"></div>
+<div id="banniere">
+
+
+</div>
 <div id="menu">        
 <div class="element_menu">
 <h3>Mes options</h3>
