@@ -14,9 +14,18 @@ echo'<i>Vous êtes ici : </i><a href ="./index.php">Index du forum</a>';
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="paneladmin.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
     </head>
 <body>
-<div>
+<div="container">
+
 <h1>Bienvenue chez Sheeks !!</h1>
 
 <?php
