@@ -68,20 +68,20 @@ else //On est dans le cas traitement
     $query->CloseCursor();
     if(!$pseudo_free)
     {
-        $pseudo_erreur1 = "Votre pseudo est déjà utilisé par un membre";
+        $pseudo_erreur1 = "Votre pseudo est déjà utilisé par un membre !";
         $i++;
     }
 
     if (strlen($pseudo) < 3 || strlen($pseudo) > 15)
     {
-        $pseudo_erreur2 = "Votre pseudo est soit trop grand, soit trop petit";
+        $pseudo_erreur2 = "Votre pseudo est soit trop grand, soit trop petit !";
         $i++;
     }
 
     //Vérification du mdp
     if ($pass != $confirm || empty($confirm) || empty($pass))
     {
-        $mdp_erreur = "Votre mot de passe et votre confirmation diffèrent, ou sont vides";
+        $mdp_erreur = "Votre mot de passe et votre confirmation différent ou sont vides !";
         $i++;
     }
 //Vérification de l'adresse email
@@ -95,13 +95,13 @@ else //On est dans le cas traitement
     
     if(!$mail_free)
     {
-        $email_erreur1 = "Votre adresse email est déjà utilisée par un membre";
+        $email_erreur1 = "Votre adresse email est déjà utilisée par un membre !";
         $i++;
     }
     //On vérifie la forme maintenant
     if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) || empty($email))
     {
-        $email_erreur2 = "Votre adresse E-Mail n'a pas un format valide";
+        $email_erreur2 = "Votre adresse E-Mail n'a pas un format valide !";
         $i++;
     }
 
@@ -112,7 +112,7 @@ else //On est dans le cas traitement
     //Vérification de la signature
     if (strlen($signature) > 200)
     {
-        $signature_erreur = "Votre signature est trop longue";
+        $signature_erreur = "Votre signature est trop longue !";
         $i++;
     }
      //Vérification de l'avatar :

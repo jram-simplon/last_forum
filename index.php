@@ -136,6 +136,8 @@ echo '
 
 <div>Retapez votre Password:</div><input type="password" name="confirm"><br/>
 
+<div>Signature :</div><input type="text" name="signature"><br/>
+
 
 
 
